@@ -207,7 +207,7 @@ export interface BabelTraverse {
 export type BabelVisitorMethod = (path: BabelPath, state: BabelPluginPass) => mixed;
 
 export type BabelVisitor = {
-  [key: string]: BabelVisitorMethod | { enter?: BabelVisitorMethod, exit?: BabelVisitorMethod },
+  [key: string]: { enter?: BabelVisitorMethod, exit?: BabelVisitorMethod } | BabelVisitorMethod,
 };
 
 type BabelVisitorVerify = (visitor: BabelVisitor) => void;
