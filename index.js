@@ -46,14 +46,22 @@ export interface BabelStore extends Map<any, any> {
   get(key: string): any,
 }
 
+export type Plugin = (babel: Babel) => {
+  manipulateOptions?: Function,
+  post?: Function,
+  pre?: Function,
+  visitor: BabelVisitor,
+};
+
 export interface BabelPlugin extends BabelStore {
   constructor(plugin: Object, key?: string): Plugin,
+
   initialized: boolean,
   raw: Object,
   manipulateOptions: ?Function,
   post: ?Function,
   pre: ?Function,
-  visitor: Object,
+  visitor: BabelVisitor,
 
   take(key: string): any,
   chain(target: Object, key: string): Function,
