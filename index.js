@@ -1415,7 +1415,7 @@ export type Types = {
   assertNode(node: ?Object): void,
   isNode(node: ?Object): boolean,
 
-  traverseFast(node: Node, enter: (node: Node) => void), opts?: Object): void,
+  traverseFast(node: Node, enter: (node: Node) => void, opts?: Object): void,
 
   removeProperties(node: Node, opts?: Object): void,
   removePropertiesDeep(tree: Node, opts?: Object): void,
