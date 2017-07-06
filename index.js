@@ -367,7 +367,7 @@ export interface BabelPath {
   getNextSibling(): ?BabelPath,
   getAllNextSiblings(): Array<BabelPath>,
   getAllPrevSiblings(): Array<BabelPath>,
-  get(key: string, context?: boolean | BabelTraversalContext): BabelPath,
+  get(key: string, context?: boolean | BabelTraversalContext): any,
   getBindingIdentifiers(duplicates?: boolean): { [key: string]: Node },
   getOuterBindingIdentifiers(duplicates?: boolean): { [key: string]: Node },
   getBindingIdentifierPaths(duplicates?: boolean, outerOnly?: boolean): { [key: string]: BabelPath },
