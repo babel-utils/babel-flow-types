@@ -368,8 +368,8 @@ export interface BabelPath {
   getAllNextSiblings(): Array<BabelPath>,
   getAllPrevSiblings(): Array<BabelPath>,
   get(key: string, context?: boolean | BabelTraversalContext): any,
-  getBindingIdentifiers(duplicates?: boolean): { [key: string]: Node },
-  getOuterBindingIdentifiers(duplicates?: boolean): { [key: string]: Node },
+  getBindingIdentifiers(duplicates?: boolean): { [key: string]: Identifier },
+  getOuterBindingIdentifiers(duplicates?: boolean): { [key: string]: Identifier },
   getBindingIdentifierPaths(duplicates?: boolean, outerOnly?: boolean): { [key: string]: BabelPath },
   getOuterBindingIdentifierPaths(duplicates?: boolean): { [key: string]: BabelPath },
 
@@ -1389,6 +1389,65 @@ export type FlowDeclaration = DeclareClass | DeclareFunction | DeclareInterface 
 export type JSX = JSXAttribute | JSXClosingElement | JSXElement | JSXEmptyExpression | JSXExpressionContainer | JSXIdentifier | JSXMemberExpression | JSXNamespacedName | JSXOpeningElement | JSXSpreadAttribute | JSXText;
 
 export type Types = {
+  is(type: string, node: Object, opts?: Object): boolean,
+  isType(nodeType: string, targetType: string): boolean,
+  validate(node?: Object, key: string, val: any): void,
+  shallowEqual(actual: Object, expected: Object): boolean,
+
+  appendToMemberExpression(member: MemberExpression, append: Node, computed?: boolean): MemberExpression,
+  prependToMemberExpression(member: MemberExpression, prepend: Node): MemberExpression,
+
+  ensureBlock(node: Node, key?: string): Node,
+
+  clone(node: Node): Node,
+  cloneWithoutLoc(node: Node): Node,
+  cloneDeep(node: Node): Node,
+
+  matchesPattern(member: Node, match: string | Array<string>, allowPartial?: boolean): boolean,
+
+  removeComments(node: Node): Node,
+  inheritsComments(child: Node, parent: Node): Node,
+  inheritTrailingComments(child: Node, parent: Node): void,
+  inheritLeadingComments(child: Node, parent: Node): void,
+  inheritInnerComments(child: Node, parent: Node): void,
+  inherits(child: Node, parent: Node): Node,
+
+  assertNode(node: ?Object): void,
+  isNode(node: ?Object): boolean,
+
+  traverseFast(node: Node, enter: (node: Node) => void), opts?: Object): void,
+
+  removeProperties(node: Node, opts?: Object): void,
+  removePropertiesDeep(tree: Node, opts?: Object): void,
+
+  getBindingIdentifiers(node: Node, duplicates?: boolean, outerOnly?: boolean): { [key: string]: Identifier },
+  getOuterBindingIdentifiers(node: Node, duplicates?: boolean): { [key: string]: Identifier },
+
+  isBinding(node: Node, parent: Node): boolean,
+  isReferenced(node: Node, parent: Node): boolean,
+  isValidIdentifier(name: string): boolean,
+  isLet(node: Node): boolean,
+  isBlockScoped(node: Node): boolean,
+  isVar(node: Node): boolean,
+  isSpecifierDefault(specifier: Node): boolean,
+  isScope(node: Node, parent: Node): boolean,
+  isImmutable(node: Node): boolean,
+  isNodesEquivalent(a: Node, b: Node): boolean,
+
+  toComputedKey(node: Node, key?: Node): Node,
+  toSequenceExpression(nodes: Array<Node>, scope: BabelScope): ?Node,
+  toKeyAlias(node: Node, key?: Node): string,
+  toIdentifier(name: string): Identifier,
+  toBindingIdentifierName(name: string): string,
+  toStatement(node: Node, ignore?: boolean): Node | false,
+  toExpression(node: Node): Node,
+  toBlock(node: Node, parent: Node): Node,
+  valueToNode(value: mixed): Node,
+
+  createUnionTypeAnnotation(types: Array<Node>): Node,
+  removeTypeDuplicates(nodes: Array<Node>): Array<Node>,
+  createTypeAnnotationBasedOnTypeof(type: string): Node,
+
   arrayExpression(elements?: Array<Expression | SpreadElement>): ArrayExpression;
   assignmentExpression(operator?: string, left?: LVal, right?: Expression): AssignmentExpression;
   binaryExpression(operator?: "+" | "-" | "/" | "%" | "*" | "**" | "&" | "|" | ">>" | ">>>" | "<<" | "^" | "==" | "===" | "!=" | "!==" | "in" | "instanceof" | ">" | "<" | ">=" | "<=", left?: Expression, right?: Expression): BinaryExpression;
