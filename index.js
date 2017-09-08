@@ -29,7 +29,7 @@ export type BabelFileModulesMetadata = {
 export type BabelParserOptions = {
   sourceFilename?: string;
   sourceType?: "module" | "script";
-  plugins?: Array<Object>;
+  plugins?: Array<string>;
 };
 
 export interface BabelPipeline {
