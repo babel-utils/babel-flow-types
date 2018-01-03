@@ -99,10 +99,10 @@ export interface BabelOptionManager {
   resolvedConfigs: Array<string>,
   options: Object,
   log?: BabelLogger,
-  static memoisePluginContainer(fn: Function, loc?: string, i?: any, alias?: string): BabelPlugin,
-  static createBareOptions(): Object,
-  static normalisePlugin(plugin: Function | BabelPlugin, loc?: string, i?: any, alias?: string): void,
-  static normalisePlugins(loc: string, dirname: string, plugins: Array<string | [string, Object]>): Array<any>,
+  // static memoisePluginContainer(fn: Function, loc?: string, i?: any, alias?: string): BabelPlugin,
+  // static createBareOptions(): Object,
+  // static normalisePlugin(plugin: Function | BabelPlugin, loc?: string, i?: any, alias?: string): void,
+  // static normalisePlugins(loc: string, dirname: string, plugins: Array<string | [string, Object]>): Array<any>,
   mergeOptions(opts: { options: Object, extending: Object, alias?: string, loc?: string, dirname?: string }): void,
   mergePresets(presets: Array<string | Object>, dirname: string): void,
   resolvePresets(presets: Array<string | Object>, dirname: string, onResolve?: Function): Array<any>,
@@ -269,14 +269,14 @@ export interface BabelPath {
   type: string,
   typeAnnotation: ?Object,
 
-  static get(opts: {
-    hub: BabelHub,
-    parentPath?: BabelPath,
-    parent?: Node,
-    container?: ?BabelContainer,
-    listKey?: string,
-    key?: string,
-  }): BabelPath,
+  // static get(opts: {
+  //   hub: BabelHub,
+  //   parentPath?: BabelPath,
+  //   parent?: Node,
+  //   container?: ?BabelContainer,
+  //   listKey?: string,
+  //   key?: string,
+  // }): BabelPath,
 
   getScope(scope: BabelScope): BabelScope,
   setData(key: string, val: any): any,
@@ -389,8 +389,8 @@ export interface BabelScope {
   path: BabelPath,
   labels: Map<string, BabelPath>,
 
-  static globals: Array<string>,
-  static contextVariables: Array<string>,
+  // static globals: Array<string>,
+  // static contextVariables: Array<string>,
 
   traverse(node: Node, opts: Object, state?: Object): void,
   generateDeclaredUidIdentifier(name?: string): Node,
